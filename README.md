@@ -23,7 +23,35 @@ At some point of time you obviously add them to master/main so it will have new 
 4. Consequently, it allows you usage of this information for your CD processes in the workflow.
 
 ## Usage
-#TODO
+
+Example workflow:
+
+```yaml
+name: Release Workflow
+
+on:
+  push:
+
+jobs:
+  gets-description:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run Releaser Action
+        id: releaser  # Unique ID for the step
+        uses: API-Developer-Portal/releaser@v0
+        with:
+          JiraToken: ${{ secrets.JIRA_TOKEN }}
+          ProjectName: 'PROJECT'
+          GitHubRepoLink: 'https://git.dhl.com/enterprise/repo'
+          GitUser: 'nsurname'
+          GitToken: ${{ secrets.GIT_TOKEN }}
+          MainBranch: 'master'
+          DevBranch: 'develop'
+
+      - name: Get the output
+        run: echo "The ticket summary is ${{ steps.releaser.outputs.ticketSummary }}"
+
 
 ## Additional and helpful links
 
