@@ -1,0 +1,45 @@
+name: 'Releaser'
+author: 'Nikita Matsnev'
+description: 'Create and close fast RFC in GHA'
+
+branding:
+  icon: 'file'
+  color: 'yellow'
+inputs:
+  JiraToken:
+    description: 'e.g. 03scdsdc...'
+    required: true
+  ProjectName:
+    description: 'e.g. PROJECT'
+    required: true
+  GitHubRepoLink:
+    description: 'e.g. https://git.dhl.com/enterprise/repo'
+    required: true
+  GitUser:
+    description: 'e.g. nsurname'
+    required: true
+  GitToken:
+    description: 'e.g. gbp_ddsds...'
+    required: true
+  MainBranch:
+    description: 'e.g. master'
+    required: true
+  DevBranch:
+    description: 'e.g. develop'
+    required: true
+
+outputs:
+  ticketSummary:
+    description: "The summary of the tickets"
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - '"${{ inputs.JiraToken }}"'
+    - '"${{ inputs.ProjectName }}"'
+    - '"${{ inputs.GitHubRepoLink }}"'
+    - '"${{ inputs.GitUser }}"'
+    - '"${{ inputs.GitToken }}"'
+    - '"${{ inputs.MainBranch }}"'
+    - '"${{ inputs.DevBranch }}"'
