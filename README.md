@@ -52,6 +52,7 @@ jobs:
       - name: Get the output
         run: echo "The ticket summary is ${{ steps.releaser.outputs.ticketSummary }}"
 
+```
 
 ## Additional and helpful links
 
