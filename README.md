@@ -22,6 +22,9 @@ At some point of time you obviously add them to master/main so it will have new 
 3. Then it brings you the summary of the tickets in the nice form of output string GitHub variable.
 4. Consequently, it allows you usage of this information for your CD processes in the workflow.
 
+## Usage
+#TODO
+
 ## Additional and helpful links
 
 1. [How to get Jira Token](https://developer.dhl.com/api-reference/its-jira#get-started-section/)
