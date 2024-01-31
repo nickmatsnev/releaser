@@ -23,7 +23,7 @@ if [ "$#" -ne 7 ]; then
 fi
 
 git clone https://"${git_user}":"${git_token}"@"${git_origin}"
-cd ./"${git_project}" || { echo "Error after cloning"; exit 1; }
+cd /"${git_project}" || { echo "Error after cloning"; exit 1; }
 
 git fetch --all
 
