@@ -25,12 +25,10 @@ fi
 git clone https://"${git_user}":"${git_token}"@"${git_origin}"
 cd /"${git_project}" || { echo "Error after cloning"; exit 1; }
 
-git fetch --all
+git fetch
 
-initial_branch=$(git rev-parse --abbrev-ref HEAD)
-git checkout master
-git checkout develop
-git checkout "$initial_branch"
+git checkout "${main_branch}"
+git checkout "${advanced_branch}"
 
 tickets=()
 summaries=()
@@ -52,8 +50,7 @@ done
 output=""
 
 for (( i=0; i<${#tickets[@]}; i++ )); do
-    printf "%s - %s\n" "${tickets[i]}" "${summaries[i]}"
     output+="${tickets[i]} - ${summaries[i]}\n"
 done
 
-echo "::set-output name=ticketSummary::${output}"
+echo -e "::set-output name=ticketSummary::${output}"
