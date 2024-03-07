@@ -51,6 +51,7 @@ output=""
 
 for (( i=0; i<${#tickets[@]}; i++ )); do
     output+="${tickets[i]} - ${summaries[i]}"
+    printf "%s - %s\n" "${tickets[i]}" "${summaries[i]}"
 done
 
-echo -e "::set-output name=ticketSummary::${output}"
+echo "ticketSummary=${output}" >> $GITHUB_OUTPUT
