@@ -23,9 +23,9 @@ if [ "$#" -ne 7 ]; then
 fi
 
 git clone https://"${git_user}":"${git_token}"@"${git_origin}"
-cd /"${git_project}" || { echo "Error after cloning"; exit 1; }
+cd "${git_project}" || { echo "Error after cloning"; exit 1; }
 
-git fetch
+git fetch --all
 
 git checkout "${main_branch}"
 git checkout "${advanced_branch}"
@@ -35,7 +35,7 @@ summaries=()
 
 while read -r line; do
   tickets+=("$line")
-done < <(git log --cherry-pick --pretty=format:"%s" "${main_branch}..${advanced_branch}" | grep -o "${project_name}-[0-9]\+" | sort | uniq)
+done < <(git log --cherry-pick --pretty=format:"%s" ${main_branch} | grep -o "${project_name}-[0-9]\+" | sort | uniq)
 
 for ticket in "${tickets[@]}"; do
   response=$(curl -s -X 'GET' \
@@ -50,7 +50,7 @@ done
 output=""
 
 for (( i=0; i<${#tickets[@]}; i++ )); do
-    output+="${tickets[i]} - ${summaries[i]}\n"
+    output+="${tickets[i]} - ${summaries[i]}"
 done
 
 echo -e "::set-output name=ticketSummary::${output}"
