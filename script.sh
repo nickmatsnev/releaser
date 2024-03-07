@@ -42,7 +42,7 @@ for ticket in "${tickets[@]}"; do
     "https://jira.dhl.com/rest/api/2/issue/${ticket}?fields=summary" \
     -H 'accept: application/json' \
     -H "Authorization: Bearer ${jira_token}")
-
+  echo "${response}"
   summary=$(echo "$response" | grep -Po '"summary":\s*"\K[^"]+' )
   summaries+=("$summary")
 done
