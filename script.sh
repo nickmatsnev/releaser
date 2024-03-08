@@ -42,7 +42,6 @@ for ticket in "${tickets[@]}"; do
     "https://jira.dhl.com/rest/api/2/issue/${ticket}?fields=summary" \
     -H 'accept: application/json' \
     -H "Authorization: Bearer ${jira_token}")
-  echo "${response}"
   summary=$(echo "$response" | grep -Po '"summary":\s*"\K[^"]+' )
   summaries+=("$summary")
 done
@@ -50,8 +49,8 @@ done
 output=""
 
 for (( i=0; i<${#tickets[@]}; i++ )); do
-    output+="${tickets[i]} - ${summaries[i]}"
-    printf "%s - %s\n" "${tickets[i]}" "${summaries[i]}"
+    output+="${tickets[i]} - ${summaries[i]}\n"
+    printf "%s - %s\n\n" "${tickets[i]}" "${summaries[i]}"
 done
 
 echo "ticketSummary=${output}" >> $GITHUB_OUTPUT
