@@ -1,4 +1,4 @@
-FROM kfp-components-docker-dev-local.artifactory.dhl.com/alpine:latest
+FROM kfp-components-docker-dev-local.artifactory.my-company.com/alpine:latest
 
 RUN apk add --no-cache bash pcre grep curl git
 

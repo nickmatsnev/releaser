@@ -13,7 +13,7 @@ inputs:
     description: 'e.g. PROJECT'
     required: true
   GitHubRepoLink:
-    description: 'e.g. https://git.dhl.com/enterprise/repo'
+    description: 'e.g. https://git.my-company.com/enterprise/repo'
     required: true
   GitUser:
     description: 'e.g. nsurname'
